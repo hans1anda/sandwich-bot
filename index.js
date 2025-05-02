@@ -20,7 +20,7 @@ if (!RPC_URL || !PRIVATE_KEY) {
 
 async function main() {
     try {
-        const provider = new ethers.JsonRpcProvider(RPC_URL);
+        const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
         const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
         console.log('Bot wallet address:', await wallet.getAddress());
 

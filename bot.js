@@ -1,4 +1,3 @@
-// bot.js
 require("dotenv").config();
 const { ethers } = require("ethers");
 const fs = require("fs");
@@ -8,6 +7,7 @@ const { analyzeTransaction } = require("./analyzer");
 const { executeSandwich } = require("./executor");
 
 const { FlashbotsBundleProvider } = require("@flashbots/ethers-provider-bundle");
+const provider = new ethers.providers.JsonRpcProvider(config.RPC_URL);
 
 let flashbotsProvider;
 let authSigner;
@@ -22,10 +22,6 @@ let authSigner;
   );
 })();
 
-
-const provider = new ethers.JsonRpcProvider(config.rpcUrl);
-
-// Basit log fonksiyonu
 function log(message) {
   const timestamp = new Date().toISOString();
   const logMessage = `[${timestamp}] ${message}\n`;
@@ -50,7 +46,7 @@ provider.on("pending", async (txHash) => {
         tx,
         config.targetTokenIn,
         config.targetTokenOut,
-        ethers.utils.parseUnits("0.1", 18)
+        ethers.parseUnits("0.1", 18)
       );
       log("[BOT] Sandwich execution attempted.");
     }

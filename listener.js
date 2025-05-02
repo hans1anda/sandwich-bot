@@ -6,7 +6,7 @@ const iface = new ethers.Interface([
 ]);
 
 async function listenPendingTransactions() {
-  const provider = new ethers.JsonRpcProvider(config.RPC_URL);
+  const provider = new ethers.providers.JsonRpcProvider(config.RPC_URL);
 
   provider.on("pending", async (txHash) => {
     try {

@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@flashbots/ethers-provider-bundle": "^0.6.2",
     "dotenv": "^16.5.0",
-    "ethers": "^6.13.7"
+    "ethers": "^5.7.2"
   },
-  "description": ""
+  "description": "Welcome to the  **Sandwich Trading Bot** , a tool designed for educational purposes to explore sandwich trading strategies on Uniswap V3 within the Arbitrum Sepolia testnet. This bot monitors the mempool to detect and execute front-running trades, commonly known as \"sandwich\" trades."
 }

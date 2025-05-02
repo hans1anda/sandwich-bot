@@ -1,4 +1,6 @@
 require("dotenv").config();
+const { ethers } = require("ethers");
+
 
 module.exports = {
   RPC_URL: process.env.RPC_URL,

@@ -1,12 +1,13 @@
-// executor.js
 require("dotenv").config();
 const { ethers } = require("ethers");
 const config = require("./config");
+const routerAbi = [
+  "function exactInputSingle((address tokenIn, address tokenOut, uint24 fee, address recipient, uint256 deadline, uint256 amountIn, uint256 amountOutMinimum, uint160 sqrtPriceLimitX96)) external payable returns (uint256)"
+];
 
-const provider = new ethers.JsonRpcProvider(config.rpcUrl);
-const wallet = new ethers.Wallet(config.privateKey, provider);
-const routerAbi = require("./abis/uniswapV3Router.json");
-const routerContract = new ethers.Contract(config.routerAddress, routerAbi, wallet);
+const provider = new ethers.providers.JsonRpcProvider(config.RPC_URL);
+const wallet = new ethers.Wallet(config.PRIVATE_KEY, provider);
+const routerContract = new ethers.Contract(config.UNISWAP_ROUTER_ADDRESS, routerAbi, wallet);
 
 async function executeSandwich(targetTx, tokenIn, tokenOut, amountIn) {
   console.log("[EXECUTOR] Executing front-run swap...");
