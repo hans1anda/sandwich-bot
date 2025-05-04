@@ -26,7 +26,8 @@ async function listenPendingTransactions() {
           console.log("From:", tx.from);
           console.log("Token In:", tokenIn);
           console.log("Token Out:", tokenOut);
-          console.log("Amount In:", ethers.formatUnits(amountIn, 18));
+          console.log("Amount In:", formatUnits(toBigInt(amountIn), 18)
+        );
         }
       }
     } catch (err) {

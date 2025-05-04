@@ -2,24 +2,23 @@ const { ethers } = require("ethers");
 
 // Uniswap V2 pair adresini hesaplamak için kullanılan fonksiyon
 async function getPairAddress(provider, factoryAddress, tokenA, tokenB) {
-  // Adres sıralaması: getPair çağrısı her zaman aynı sonucu versin diye
-  [tokenA, tokenB] = tokenA.toLowerCase() < tokenB.toLowerCase()
-    ? [tokenA, tokenB]
-    : [tokenB, tokenA];
-
-  const factoryABI = [
-    "function getPair(address tokenA, address tokenB) external view returns (address pair)"
-  ];
-  const factoryContract = new ethers.Contract(factoryAddress, factoryABI, provider);
-  const pairAddress = await factoryContract.getPair(tokenA, tokenB);
-  return pairAddress;
-}
+    if (tokenA.toLowerCase() > tokenB.toLowerCase()) {
+      [tokenA, tokenB] = [tokenB, tokenA];
+    }
+  
+    const factoryABI = [
+      "function getPair(address tokenA, address tokenB) external view returns (address pair)"
+    ];
+  
+    const factoryContract = new ethers.Contract(factoryAddress, factoryABI, provider);
+    const pairAddress = await factoryContract.getPair(tokenA, tokenB);
+    return pairAddress;
+  }
+  
 
 // Pair sözleşmesinden rezervleri almak için kullanılan fonksiyon
 async function getReserves(provider, pairAddress, tokenIn, tokenOut) {
-  // Ön kontrol: Geçersiz pair adresini atla
   if (!pairAddress || pairAddress === ethers.constants.AddressZero) {
-    console.warn("Geçersiz pair adresi (0x0), rezerv alınamıyor.");
     return null;
   }
 
