@@ -8,7 +8,7 @@ const routerAbi = [
   "function exactInputSingle((address tokenIn, address tokenOut, uint24 fee, address recipient, uint256 deadline, uint256 amountIn, uint256 amountOutMinimum, uint160 sqrtPriceLimitX96)) external payable returns (uint256 amountOut)"
 ];
 
-const provider = new ethers.providers.JsonRpcProvider(config.RPC_URL);
+const provider = new ethers.JsonRpcProvider(config.RPC_URL);
 
 const wallet = new ethers.Wallet(config.PRIVATE_KEY, provider);
 const routerContract = new ethers.Contract(config.UNISWAP_ROUTER_ADDRESS, routerAbi, wallet);
