@@ -1,38 +1,40 @@
-function isProfitableSandwich(amountIn, reservesIn, reservesOut) {
+function isProfitableSandwich(amountIn, reservesIn, reservesOut, decimalsIn = 18, decimalsOut = 6, slippageTolerance = 0.005) {
   try {
-    const amountInBN = BigInt(amountIn);
-    const reservesInBN = BigInt(reservesIn);
-    const reservesOutBN = BigInt(reservesOut);
+      const amountInBN = BigInt(amountIn);
+      const reservesInBN = BigInt(reservesIn);
+      const reservesOutBN = BigInt(reservesOut);
 
-    // Debug: Fiyatların nasıl değiştiğini görmek
-    console.log("Original Reserves In:", reservesInBN);
-    console.log("Original Reserves Out:", reservesOutBN);
+      const inputAmountWithFee = amountInBN * 997n / 1000n; // %0.3 fee
 
-    const inputAmountWithFee = amountInBN * 997n;
-    console.log("Input Amount with Fee:", inputAmountWithFee);
+      const amountOut = (inputAmountWithFee * reservesOutBN) / (reservesInBN + inputAmountWithFee);
 
-    const numerator = inputAmountWithFee * reservesOutBN;
-    const denominator = reservesInBN * 1000n + inputAmountWithFee;
-    const amountOut = numerator / denominator;
-    console.log("Amount Out:", amountOut);
+      const newReservesIn = reservesInBN + amountInBN;
+      const newReservesOut = reservesOutBN - amountOut;
 
-    const newReservesIn = reservesInBN + amountInBN;
-    const newReservesOut = reservesOutBN - amountOut;
-    console.log("New Reserves In:", newReservesIn);
-    console.log("New Reserves Out:", newReservesOut);
+      const slippageNumerator = BigInt(Math.floor((1 - slippageTolerance) * 10000));
+      const slippageDenominator = 10000n;
 
-    const precisionFactor = 1_000_000n;
+      const normalizationFactor = BigInt(10) ** BigInt(decimalsIn - decimalsOut); // USDC'yi WETH ölçeğine getir
 
-    const newPrice = (newReservesOut * precisionFactor) / newReservesIn;
-    const originalPrice = (reservesOutBN * precisionFactor) / reservesInBN;
+      // Fiyatları WETH cinsinden karşılaştır
+      const originalPriceNumerator = reservesOutBN * normalizationFactor * slippageDenominator;
+      const originalPriceDenominator = reservesInBN * (slippageDenominator * BigInt(10) ** BigInt(decimalsOut)); // Orijinalin paydasını da ölçeklendir
 
-    console.log("New Price:", newPrice);
-    console.log("Original Price:", originalPrice);
+      const newPriceNumerator = newReservesOut * normalizationFactor * slippageDenominator;
+      const newPriceDenominator = newReservesIn * (slippageDenominator * BigInt(10) ** BigInt(decimalsOut)); // Yeninin paydasını da ölçeklendir
 
-    return newPrice < (originalPrice * 99n / 100n);
+      console.log("Original Price Numerator:", originalPriceNumerator);
+      console.log("Original Price Denominator:", originalPriceDenominator);
+      console.log("New Price Numerator:", newPriceNumerator);
+      console.log("New Price Denominator:", newPriceDenominator);
+      console.log("Slippage Numerator:", slippageNumerator);
+      console.log("Slippage Denominator:", slippageDenominator);
+
+      return (newPriceNumerator * originalPriceDenominator * slippageNumerator) < (originalPriceNumerator * newPriceDenominator);
+
   } catch (error) {
-    console.error("❌ Error in isProfitableSandwich:", error.message);
-    return false;
+      console.error("❌ Error in isProfitableSandwich:", error.message);
+      return false;
   }
 }
 

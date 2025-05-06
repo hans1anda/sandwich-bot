@@ -1,16 +1,17 @@
 const { parseUnits } = require("ethers");
 const { isProfitableSandwich } = require("./analyzer");
+const config = require("./config"); // Eğer config'den slippage alacaksanız
 
 const scenarios = [
   {
     name: "Profitable scenario",
-    amountIn: parseUnits("0.1", 18), // 0.1 WETH
-    reservesIn: parseUnits("10", 18), // 10 WETH
-    reservesOut: parseUnits("20000", 6), // 20,000 USDC (6 decimals)
+    amountIn: parseUnits("0.1", 18),
+    reservesIn: parseUnits("10", 18),
+    reservesOut: parseUnits("20000", 6),
   },
   {
     name: "Unprofitable scenario (too much slippage)",
-    amountIn: parseUnits("5", 18), // 5 WETH
+    amountIn: parseUnits("5", 18),
     reservesIn: parseUnits("10", 18),
     reservesOut: parseUnits("20000", 6),
   },
@@ -29,6 +30,13 @@ for (const scenario of scenarios) {
   const reservesInBigInt = BigInt(scenario.reservesIn.toString());
   const reservesOutBigInt = BigInt(scenario.reservesOut.toString());
 
-  const result = isProfitableSandwich(amountInBigInt, reservesInBigInt, reservesOutBigInt);
+  const result = isProfitableSandwich(
+    amountInBigInt,
+    reservesInBigInt,
+    reservesOutBigInt,
+    18,
+    6, 
+    config.SLIPPAGE_TOLERANCE
+  );
   console.log("📈 Profitable:", result);
 }
