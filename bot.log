@@ -1,1 +1,26 @@
 [2025-05-04T20:01:29.502Z] [BOT] ✅ Listening to pending mempool transactions...
+[2025-05-06T20:13:02.900Z] [ERROR] Error: could not coalesce error (error={ "code": 429, "message": "Your app has exceeded its compute units per second capacity. If you have retries enabled, you can safely ignore this message. If not, check out https://docs.alchemy.com/reference/throughput" }, payload={ "id": 2836, "jsonrpc": "2.0", "method": "eth_getTransactionByHash", "params": [ "0x7d5633e222c5b708240310947f4bc12cd11221647bc9f1f35c0f42f82124b2e5" ] }, code=UNKNOWN_ERROR, version=6.7.1)
+    at makeError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\utils\errors.js:125:21)
+    at JsonRpcProvider.getRpcError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:653:41)
+    at C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:268:45
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-05-06T20:13:02.902Z] [ERROR] Error: could not coalesce error (error={ "code": 429, "message": "Your app has exceeded its compute units per second capacity. If you have retries enabled, you can safely ignore this message. If not, check out https://docs.alchemy.com/reference/throughput" }, payload={ "id": 2838, "jsonrpc": "2.0", "method": "eth_getTransactionByHash", "params": [ "0xbd604d70262d854c4d35bddc9162a3401abc3449b57153d8e3be3b5a9ad6d8b6" ] }, code=UNKNOWN_ERROR, version=6.7.1)
+    at makeError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\utils\errors.js:125:21)
+    at JsonRpcProvider.getRpcError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:653:41)
+    at C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:268:45
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-05-06T20:13:02.903Z] [ERROR] Error: could not coalesce error (error={ "code": 429, "message": "Your app has exceeded its compute units per second capacity. If you have retries enabled, you can safely ignore this message. If not, check out https://docs.alchemy.com/reference/throughput" }, payload={ "id": 2840, "jsonrpc": "2.0", "method": "eth_getTransactionByHash", "params": [ "0xce78bd1b2a1c08a3673f27caacec54310b8f11f930e6255459842b2fb8c15ea1" ] }, code=UNKNOWN_ERROR, version=6.7.1)
+    at makeError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\utils\errors.js:125:21)
+    at JsonRpcProvider.getRpcError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:653:41)
+    at C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:268:45
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-05-06T20:13:02.905Z] [ERROR] Error: could not coalesce error (error={ "code": 429, "message": "Your app has exceeded its compute units per second capacity. If you have retries enabled, you can safely ignore this message. If not, check out https://docs.alchemy.com/reference/throughput" }, payload={ "id": 2842, "jsonrpc": "2.0", "method": "eth_getTransactionByHash", "params": [ "0xf3ead1bfd9b41e289c53b102f5b34057393eef261848e3a7eaf2d9d5bc39dee3" ] }, code=UNKNOWN_ERROR, version=6.7.1)
+    at makeError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\utils\errors.js:125:21)
+    at JsonRpcProvider.getRpcError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:653:41)
+    at C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:268:45
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2025-05-06T20:13:02.906Z] [ERROR] Error: could not coalesce error (error={ "code": 429, "message": "Your app has exceeded its compute units per second capacity. If you have retries enabled, you can safely ignore this message. If not, check out https://docs.alchemy.com/reference/throughput" }, payload={ "id": 2844, "jsonrpc": "2.0", "method": "eth_getTransactionByHash", "params": [ "0x4130d75c561c497272d6dff947e6d79a95a7d54f2f929017d68a932a10e7a6bf" ] }, code=UNKNOWN_ERROR, version=6.7.1)
+    at makeError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\utils\errors.js:125:21)
+    at JsonRpcProvider.getRpcError (C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:653:41)
+    at C:\Users\Landa\desktop\sandwich-bot\node_modules\ethers\lib.commonjs\providers\provider-jsonrpc.js:268:45
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
