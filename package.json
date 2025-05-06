@@ -1,13 +1,8 @@
 {
-  "name": "sandwich-bot",
-  "version": "1.0.0",
-  "description": "Uniswap V3 sandwich bot (Arbitrum Sepolia)",
-  "main": "bot.js",
-  "scripts": {
-    "start": "node bot.js"
-  },
   "dependencies": {
-    "ethers": "^6.6.2",
-    "dotenv": "^16.3.1"
+    "@ethersproject/web": "^5.8.0",
+    "@flashbots/ethers-provider-bundle": "1.0.0",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.6.2"
   }
 }

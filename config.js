@@ -19,6 +19,6 @@ module.exports = {
   targetTokenOut: "0x0fa8781a83e46826621b3bc094ea2a0212e71b23", // USDC
 
   SLIPPAGE_TOLERANCE: 0.005, // 0.5%
-  MIN_SWAP_AMOUNT: ethers.utils.parseUnits("1.0", 18), // 1 WETH minimum to consider
+  MIN_SWAP_AMOUNT: ethers.parseUnits("1.0", 18), // 1 WETH minimum to consider
 
 };

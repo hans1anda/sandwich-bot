@@ -8,16 +8,15 @@ const { executeSandwich } = require("./executor");
 const { getPairAddress, getReserves } = require("./uniswap_utils");
 const { FlashbotsBundleProvider } = require("@flashbots/ethers-provider-bundle");
 
-const provider = new ethers.providers.JsonRpcProvider(config.RPC_URL);
-
+const provider = new ethers.JsonRpcProvider(config.RPC_URL);
 let flashbotsProvider;
 let authSigner;
 
 (async () => {
   try {
     const network = await provider.getNetwork();
-    console.log("Provider Network:", network);
-    if (network.chainId !== 11155111) {
+    console.log(`Provider Network : ${network.name}`);
+    if (network.chainId != 11155111) {
       throw new Error("Provider is not connected to Sepolia testnet");
     }
 
@@ -53,7 +52,7 @@ provider.on("pending", async (txHash) => {
     if (!tx || !tx.to || !tx.data) return;
 
     // Sadece Uniswap router ile ilgili işlemlerle ilgilen
-    if (tx.to.toLowerCase() !== config.UNISWAP_ROUTER_ADDRESS.toLowerCase()) return;
+    if (tx.to.toLowerCase() != config.UNISWAP_ROUTER_ADDRESS.toLowerCase()) return;
 
     const pairAddress = await getPairAddress(
       provider,
